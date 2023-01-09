@@ -32,7 +32,7 @@
     "install-config-file": "if [ \"$CONFIG_FILE\" != \"\" ] ; then cp $CONFIG_FILE ./CONFIG_FILE.json; fi",
     "install-prebuilt-assets": "if [ \"$ASSETS_DIR_PREBUILT\" != \"\" ] ; then cp -rp $ASSETS_DIR_PREBUILT ./build/; fi",
     "start": "node ./build/server/server",
-    "start:heroku": "BASE_URL=$(node ./build/server/heroku/print-base-url) npm start",
+    "start:heroku": "BASE_URL=$(node ./build/server/heroku/print-base-url) npm run prod-build & npm start",
     "start:test": "nf start -w --env ./dev-tools/.env.test --procfile ./dev-tools/Procfile.test",
     "start:test-babel": "nodemon --signal SIGTERM -e js,jsx,md,mustache -w ./src --exec ./dev-tools/babel-run -- ./src/server",
     "dev-heroku-dispatch": "nodemon --signal SIGTERM -e js,jsx -w ./src --exec ./dev-tools/babel-run-with-env.js -- ./src/heroku/heroku-dispatch",

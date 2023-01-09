@@ -1,7 +1,7 @@
 {
-  "name": "spoke",
-  "description": "Mass peer to peer texting tool",
-  "repository": "https://github.com/moveonorg/spoke",
+  "name": "salesgodcrm",
+  "description": "Mass texting tool",
+  "repository": "https://github.com/WH0D1N1/who_sms",
   "success_url": "/",
   "stack": "container",
   "env": {

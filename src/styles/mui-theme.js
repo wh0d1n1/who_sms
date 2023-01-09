@@ -8,10 +8,10 @@ const defaultTheme = {
   palette: {
     type: "light",
     primary: {
-      main: "#209556"
+      main: "#ff0400"
     },
     secondary: {
-      main: "#555555"
+      main: "#737373"
     },
     warning: {
       main: "#fabe28"

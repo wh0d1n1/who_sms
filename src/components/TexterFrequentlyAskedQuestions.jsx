@@ -42,9 +42,7 @@ const TexterFaqs = ({ faqs }) => {
         <CardHeader title={`${faqs.length}. Who built Spoke?`} />
         <CardContent>
           <p>
-            Spoke is developed and maintained by people committed to fighting
-            oppressive systems and structures, including economic injustice,
-            racism, patriarchy, and militarism.
+            hiii
           </p>
         </CardContent>
       </Card>

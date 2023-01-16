@@ -8,7 +8,8 @@ const DEBUG =
 
 const plugins = [
   new webpack.ProvidePlugin({
-    process: 'process/browser'
+    process: 'process/browser.js',
+    Buffer: ['buffer', 'Buffer'],
   }),
   new webpack.DefinePlugin({
     "process.env.NODE_ENV": `"${process.env.NODE_ENV}"`,
@@ -39,6 +40,12 @@ if (!DEBUG) {
       fileName: assetMapFile,
       publicPath: ""
     })
+  );
+  plugins.push(
+  new webpack.ProvidePlugin({
+    process: 'process/browser.js',
+    Buffer: ['buffer', 'Buffer'],
+  })
   );
   plugins.push(
     new webpack.LoaderOptionsPlugin({
@@ -78,7 +85,14 @@ const config = {
     ]
   },
   resolve: {
-    fallback: { stream: require.resolve("stream-browserify"), zlib: require.resolve("browserify-zlib") },
+    fallback: {
+      process: require.resolve('process/browser'),
+      zlib: require.resolve('browserify-zlib'),
+      stream: require.resolve('stream-browserify'),
+      util: require.resolve('util'),
+      buffer: require.resolve('buffer'),
+      asset: require.resolve('assert')
+    },
     mainFields: ["browser", "main", "module"],
     extensions: [".js", ".jsx", ".json"]
   },

@@ -14,14 +14,7 @@ const plugins = [
     "process.env.NODE_ENV": `"${process.env.NODE_ENV}"`,
     "process.env.PHONE_NUMBER_COUNTRY": `"${process.env.PHONE_NUMBER_COUNTRY ||
       "US"}"`
-  }),
-  new webpack.ContextReplacementPlugin(
-    /[\/\\]node_modules[\/\\]timezonecomplete[\/\\]/,
-    path.resolve("tz-database-context"),
-    {
-      tzdata: "tzdata"
-    }
-  )
+  })
 ];
 const jsxLoaders = [{ loader: "babel-loader" }];
 const assetsDir = process.env.ASSETS_DIR || "./build/client/assets";

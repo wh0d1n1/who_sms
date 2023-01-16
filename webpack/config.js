@@ -57,9 +57,6 @@ const config = {
     bundle: ["babel-polyfill", "./src/client/index.jsx"]
   },
   module: {
-    loaders: [
-      
-    ],
     rules: [
       {
         test: /\.json5$/i,

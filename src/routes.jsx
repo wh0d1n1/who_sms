@@ -16,6 +16,7 @@ import DashboardLoader from "./containers/DashboardLoader";
 import TexterTodoList from "./containers/TexterTodoList";
 import TexterTodo from "./containers/TexterTodo";
 import Login from "./components/Login";
+import Chat from "./components/Chat";
 import Terms from "./containers/Terms";
 import Downtime from "./components/Downtime";
 import React from "react";
@@ -60,6 +61,7 @@ const checkTexterDowntime = requireAuth => (nextState, replace) => {
 export default function makeRoutes(requireAuth = () => {}) {
   return (
     <Route path="/" component={App} onEnter={checkDowntime}>
+      <Route path="/test"  component={TexterDashboard} />
       <IndexRoute component={Home} />
       <Route path="downtime" component={Downtime} />
       <Route path="admin" component={AdminDashboard} onEnter={requireAuth}>

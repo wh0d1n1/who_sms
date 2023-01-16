@@ -1,25 +1,29 @@
 const path = require("path");
 const webpack = require("webpack");
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const ManifestPlugin = require("webpack-manifest-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
 const DEBUG =
   process.env.NODE_ENV === "development" || !!process.env.WEBPACK_HOT_RELOAD;
 
 const plugins = [
-  new webpack.ProvidePlugin({
-    process: 'process/browser'
-  }),
   new webpack.DefinePlugin({
     "process.env.NODE_ENV": `"${process.env.NODE_ENV}"`,
     "process.env.PHONE_NUMBER_COUNTRY": `"${process.env.PHONE_NUMBER_COUNTRY ||
       "US"}"`
-  })
+  }),
+  new webpack.ContextReplacementPlugin(
+    /[\/\\]node_modules[\/\\]timezonecomplete[\/\\]/,
+    path.resolve("tz-database-context"),
+    {
+      tzdata: "tzdata"
+    }
+  )
 ];
 const jsxLoaders = [{ loader: "babel-loader" }];
 const assetsDir = process.env.ASSETS_DIR || "./build/client/assets";
 const assetMapFile = process.env.ASSETS_MAP_FILE || "assets.json";
-const outputFile = DEBUG ? "[name].js" : "[name].[fullhash].js";
+const outputFile = DEBUG ? "[name].js" : "[name].[hash].js";
 console.log("Configuring Webpack with", {
   assetsDir,
   assetMapFile,
@@ -28,9 +32,8 @@ console.log("Configuring Webpack with", {
 
 if (!DEBUG) {
   plugins.push(
-    new WebpackManifestPlugin({
-      fileName: assetMapFile,
-      publicPath: ""
+    new ManifestPlugin({
+      fileName: assetMapFile
     })
   );
   plugins.push(
@@ -48,8 +51,10 @@ const config = {
     bundle: ["babel-polyfill", "./src/client/index.jsx"]
   },
   module: {
+    loaders: [
+      {include: /\.json$/, loaders: ["json-loader"]}
+  ],
     rules: [
-      { test: /\.json$/, type: 'json', exclude: /(node_modules|bower_components)/},
       {
         test: /\.m?js/,
         type: "javascript/auto",
@@ -72,7 +77,6 @@ const config = {
     ]
   },
   resolve: {
-    fallback: { stream: require.resolve("stream-browserify"), zlib: require.resolve("browserify-zlib") },
     mainFields: ["browser", "main", "module"],
     extensions: [".js", ".jsx", ".json"]
   },

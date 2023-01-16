@@ -62,8 +62,20 @@ const config = {
     ],
     rules: [
       {
+        test: /\.json5$/i,
+        loader: 'json5-loader',
+        options: {
+          esModule: true,
+        },
+        type: 'javascript/auto',
+      },
+      {
         test: /\.json$/,
-        use:[{loader: ['json-loader']}]
+        loader: 'json-loader',
+        options: {
+          esModule: true,
+        },
+        type: 'javascript/auto'
       },
       {
         test: /\.m?js$/,

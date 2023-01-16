@@ -1,26 +1,24 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import { ThemeProvider } from "@material-ui/core/styles";
-import { createMuiTheme } from "@material-ui/core/styles";
+import createTheme from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import { defaultTheme } from "../styles/mui-theme";
 import ThemeContext from "../containers/context/ThemeContext";
-import Router from './routes';
-// theme
-// import ThemeProvider from '../theme';
-// components
-import ThemeSettings from './components/settings';
-import { ChartStyle } from './components/chart';
-import ScrollToTop from './components/ScrollToTop';
-import { ProgressBarStyle } from './components/ProgressBar';
-import NotistackProvider from './components/NotistackProvider';
+import ThemeProvider from '../theme';
+
+import ThemeSettings from './settings';
 import MotionLazyContainer from './animate/MotionLazyContainer';
+
+
+
 /**
  * We will let users customize the colors but not other
  * parts of the theme object. Here we will take the string,
  * parse it, and merge it with other app theme defaults
  */
+
+
 const formatTheme = newTheme => {
   return {
     ...defaultTheme,
@@ -30,10 +28,10 @@ const formatTheme = newTheme => {
 
 const App = ({ children }) => {
   const [theme, setTheme] = useState(defaultTheme);
-  let muiTheme = createMuiTheme(defaultTheme);
+  let muiTheme = createTheme(defaultTheme);
   try {
     // if a bad value is saved this will fail.
-    muiTheme = createMuiTheme(theme);
+    muiTheme = createTheme(theme);
   } catch (e) {
     console.error("failed to create theme", theme);
   }
@@ -54,10 +52,12 @@ const App = ({ children }) => {
   return (
     <MotionLazyContainer>
     <ThemeContext.Provider value={{ muiTheme, setTheme: handleSetTheme }}>
+      <ThemeSettings>
       <ThemeProvider theme={muiTheme}>
         <CssBaseline />
         <div styles={{ height: "100%" }}>{children}</div>
       </ThemeProvider>
+      </ThemeSettings>
     </ThemeContext.Provider>
     </MotionLazyContainer>
   );

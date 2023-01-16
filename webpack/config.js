@@ -55,14 +55,23 @@ const config = {
     bundle: ["babel-polyfill", "./src/client/index.jsx"]
   },
   module: {
-    rules: [
+    rules: [{
+          test: /\.m?js/,
+          type: "javascript/auto",
+      },
       {
-        test: /\.jsx?$/,
-        loader: 'babel-loader'
+          test: /\.m?js/,
+          resolve: {
+            fullySpecified: false
+          }
       },
       {
         test: /\.css$/,
-        use: [{ loader: "style-loader" }, { loader: "css-loader" }]
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader" },
+          { loader: 'less-loader' }
+        ]
       },
       {
         test: /\.jsx?$/,
@@ -84,6 +93,12 @@ const config = {
   devServer: {
         historyApiFallback: true
     },
+  externals: {
+    // global app config object
+      config: JSON.stringify({
+          apiUrl: 'http://localhost:4000'
+    })
+  },
   output: {
     filename: outputFile,
     path: path.resolve(DEBUG ? __dirname : assetsDir)

@@ -56,16 +56,18 @@ const config = {
   },
   module: {
     rules: [
-      { test: /\.json$/, type: 'json' },
+      { test: /\.json$/, type: 'json', exclude: /(node_modules|bower_components)/},
       {
         test: /\.m?js/,
         type: "javascript/auto",
+        exclude: /node_modules/
       },
       {
           test: /\.m?js/,
           resolve: {
             fullySpecified: false
           }
+          exclude: /node_modules/
       },
       {
         test: /\.css$/,

@@ -57,6 +57,10 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.jsx?$/,
+        loader: 'babel-loader'
+      },
+      {
         test: /\.css$/,
         use: [{ loader: "style-loader" }, { loader: "css-loader" }]
       },
@@ -70,9 +74,16 @@ const config = {
   resolve: {
     fallback: { stream: require.resolve("stream-browserify"), zlib: require.resolve("browserify-zlib") },
     mainFields: ["browser", "main", "module"],
-    extensions: [".js", ".jsx", ".json"]
+    mainFiles: ['index', 'Index'],
+    extensions: [".js", ".jsx", ".json"],
+    alias: {
+            '@': path.resolve(__dirname, 'src/'),
+        }
   },
   plugins,
+  devServer: {
+        historyApiFallback: true
+    },
   output: {
     filename: outputFile,
     path: path.resolve(DEBUG ? __dirname : assetsDir)

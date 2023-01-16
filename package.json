@@ -73,7 +73,24 @@
     "organizing",
     "field"
   ],
-  "author": "Axle Factory",
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "author": "Travis Padilla",
   "license": "GPL-3.0-only",
   "bugs": {
     "url": "https://github.com/wh0d1n1/who_sms/issues"

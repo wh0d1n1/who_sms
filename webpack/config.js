@@ -55,7 +55,17 @@ const config = {
     bundle: ["babel-polyfill", "./src/client/index.jsx"]
   },
   module: {
-    rules: [{
+    rules: [
+      {
+        test: /\.json$/,
+        type: 'javascript/auto',
+        use: [
+          {
+            loader: 'webpack-typings-for-json'
+          }
+      ]
+      },
+      {
           test: /\.m?js/,
           type: "javascript/auto",
       },

@@ -1,7 +1,7 @@
 {
   "name": "salesgodcrm",
   "description": "Mass texting tool",
-  "repository": "https://github.com/WH0D1N1/who_sms",
+  "repository": "https://github.com/wh0d1n1/who_sms",
   "success_url": "/",
   "stack": "container",
   "env": {
@@ -169,7 +169,7 @@
     "KNEX_MIGRATION_DIR": {
       "description": "sets path for migration directory - do not change",
       "required": true,
-      "value": "/spoke/build/server/migrations/"
+      "value": "/who_sms/build/server/migrations/"
     },
 
     "DB_USE_SSL": {

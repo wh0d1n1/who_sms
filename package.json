@@ -310,7 +310,7 @@
     "wait-on": "^2.1.0",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "3",
-    "webpack-typings-for-json":"^0.9.0"
+    "json-loader":"^0.5.7"
   },
   "lint-staged": {
     "*.{js,jsx,css,json}": [

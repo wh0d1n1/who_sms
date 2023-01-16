@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import { ThemeProvider } from "@material-ui/core/styles";
+// import { ThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
@@ -52,14 +52,19 @@ const App = ({ children }) => {
   };
 
   return (
-    <ThemeContext.Provider value={{ muiTheme, setTheme: handleSetTheme }}>
-      <MotionLazyContainer>
-        <ThemeProvider theme={muiTheme}>
-          <CssBaseline />
-          <div styles={{ height: "100%" }}>{children}</div>
-        </ThemeProvider>
-      </MotionLazyContainer>
-    </ThemeContext.Provider>
+    <MotionLazyContainer>
+      <ThemeContext.Provider value={{ muiTheme, setTheme: handleSetTheme }}>
+          <ThemeProvider theme={muiTheme}>
+            <NotistackProvider>
+              <ProgressBarStyle />
+              <ChartStyle />
+              <ScrollToTop />
+              <CssBaseline />
+              <div styles={{ height: "100%" }}>{children}</div>
+            </NotistackProvider>
+          </ThemeProvider>
+      </ThemeContext.Provider>
+    </MotionLazyContainer>
   );
 };
 

@@ -57,13 +57,8 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.json$/,
-        type: 'javascript/auto',
-        use: [
-          {
-            loader: 'webpack-typings-for-json'
-          }
-      ]
+        test: /\.json/,
+        loader: "json-loader"
       },
       {
           test: /\.m?js/,

@@ -26,7 +26,7 @@ import 'react-lazy-load-image-component/src/effects/opacity.css';
 import 'react-lazy-load-image-component/src/effects/black-and-white.css';
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router, browserHistory } from "react-router";
+import { BrowserRouter, Router, browserHistory } from "react-router";
 import { StyleSheet } from "aphrodite";
 import errorCatcher from "./error-catcher";
 import makeRoutes from "../routes";

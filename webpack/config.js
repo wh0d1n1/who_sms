@@ -60,14 +60,12 @@ const config = {
       {
         test: /\.m?js/,
         type: "javascript/auto",
-        exclude: /node_modules/
       },
       {
           test: /\.m?js/,
           resolve: {
             fullySpecified: false
           },
-          exclude: /node_modules/
       },
       {
         test: /\.css$/,

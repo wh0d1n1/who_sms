@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-// import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
@@ -8,7 +8,7 @@ import { defaultTheme } from "../styles/mui-theme";
 import ThemeContext from "../containers/context/ThemeContext";
 import Router from './routes';
 // theme
-import ThemeProvider from './theme';
+// import ThemeProvider from '../theme';
 // components
 import ThemeSettings from './components/settings';
 import { ChartStyle } from './components/chart';

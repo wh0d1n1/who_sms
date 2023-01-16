@@ -10,8 +10,8 @@ ENV NODE_ENV=production \
     ASSETS_MAP_FILE=assets.json \
     PHONE_NUMBER_COUNTRY=${PHONE_NUMBER_COUNTRY}
 
-COPY . /spoke
-WORKDIR /spoke
+COPY . /who_sms
+WORKDIR /who_sms
 RUN yarn install --ignore-scripts --non-interactive --frozen-lockfile && \
     yarn run prod-build && \
     rm -rf node_modules && \
@@ -19,10 +19,10 @@ RUN yarn install --ignore-scripts --non-interactive --frozen-lockfile && \
 
 # Spoke Runtime
 FROM ${RUNTIME_IMAGE}
-WORKDIR /spoke
-COPY --from=builder /spoke/build build
-COPY --from=builder /spoke/node_modules node_modules
-COPY --from=builder /spoke/package.json /spoke/yarn.lock ./
+WORKDIR /who_sms
+COPY --from=builder /who_sms/build build
+COPY --from=builder /who_sms/node_modules node_modules
+COPY --from=builder /who_sms/package.json /who_sms/yarn.lock ./
 ENV NODE_ENV=production \
     PORT=3000 \
     ASSETS_DIR=./build/client/assets \

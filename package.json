@@ -309,7 +309,8 @@
     "supertest": "^6.2.3",
     "wait-on": "^2.1.0",
     "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "3"
+    "webpack-dev-server": "3",
+    "webpack-typings-for-json":"webpack-typings-for-json"
   },
   "lint-staged": {
     "*.{js,jsx,css,json}": [

@@ -58,18 +58,19 @@ const config = {
   },
   module: {
     loaders: [
-      {
-        include: /\.json$/,
-        loaders: ['json-loader']
-      }
+      
     ],
     rules: [
       {
-        test: /\.m?js/,
+        test: /\.json$/,
+        use:[{loader: ['json-loader']}]
+      },
+      {
+        test: /\.m?js$/,
         type: "javascript/auto",
       },
       {
-          test: /\.m?js/,
+          test: /\.m?js$/,
           resolve: {
             fullySpecified: false
           },

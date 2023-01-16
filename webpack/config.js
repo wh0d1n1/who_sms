@@ -66,7 +66,7 @@ const config = {
           test: /\.m?js/,
           resolve: {
             fullySpecified: false
-          }
+          },
           exclude: /node_modules/
       },
       {

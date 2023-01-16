@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import MotionLazyContainer from './components/animate/MotionLazyContainer';
 
 import { defaultTheme } from "../styles/mui-theme";
 import ThemeContext from "../containers/context/ThemeContext";
@@ -44,10 +45,12 @@ const App = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={{ muiTheme, setTheme: handleSetTheme }}>
-      <ThemeProvider theme={muiTheme}>
-        <CssBaseline />
-        <div styles={{ height: "100%" }}>{children}</div>
-      </ThemeProvider>
+      <MotionLazyContainer>
+        <ThemeProvider theme={muiTheme}>
+          <CssBaseline />
+          <div styles={{ height: "100%" }}>{children}</div>
+        </ThemeProvider>
+      </MotionLazyContainer>
     </ThemeContext.Provider>
   );
 };

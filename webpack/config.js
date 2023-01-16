@@ -57,6 +57,12 @@ const config = {
     bundle: ["babel-polyfill", "./src/client/index.jsx"]
   },
   module: {
+    loaders: [
+      {
+        include: /\.json$/,
+        loaders: ['json-loader']
+      }
+    ],
     rules: [
       {
         test: /\.m?js/,

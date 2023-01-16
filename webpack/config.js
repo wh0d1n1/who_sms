@@ -56,6 +56,7 @@ const config = {
   },
   module: {
     rules: [
+      { test: /\.json$/, type: 'json' },
       {
         test: /\.m?js/,
         type: "javascript/auto",

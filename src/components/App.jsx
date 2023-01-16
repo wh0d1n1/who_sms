@@ -53,17 +53,12 @@ const App = ({ children }) => {
 
   return (
     <MotionLazyContainer>
-      <ThemeContext.Provider value={{ muiTheme, setTheme: handleSetTheme }}>
-          <ThemeProvider theme={muiTheme}>
-            <NotistackProvider>
-              <ProgressBarStyle />
-              <ChartStyle />
-              <ScrollToTop />
-              <CssBaseline />
-              <div styles={{ height: "100%" }}>{children}</div>
-            </NotistackProvider>
-          </ThemeProvider>
-      </ThemeContext.Provider>
+    <ThemeContext.Provider value={{ muiTheme, setTheme: handleSetTheme }}>
+      <ThemeProvider theme={muiTheme}>
+        <CssBaseline />
+        <div styles={{ height: "100%" }}>{children}</div>
+      </ThemeProvider>
+    </ThemeContext.Provider>
     </MotionLazyContainer>
   );
 };

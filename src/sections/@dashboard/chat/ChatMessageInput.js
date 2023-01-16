@@ -7,7 +7,7 @@ import { Stack, Input, Divider, IconButton, InputAdornment } from '@mui/material
 import uuidv4 from '../../../utils/uuidv4';
 // components
 import Iconify from '../../../components/Iconify';
-import { EmojiPicker } from '../../../components/emoji-picker';
+// import { EmojiPicker } from '../../../components/emoji-picker';
 
 // ----------------------------------------------------------------------
 
@@ -71,7 +71,7 @@ export default function ChatMessageInput({ disabled, conversationId, onSend }) {
         placeholder="Type a message"
         startAdornment={
           <InputAdornment position="start">
-            <EmojiPicker disabled={disabled} value={message} setValue={setMessage} />
+            <div></div>
           </InputAdornment>
         }
         endAdornment={

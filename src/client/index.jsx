@@ -28,16 +28,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Router, browserHistory } from "react-router";
 import { StyleSheet } from "aphrodite";
-import errorCatcher from "./error-catcher";
-import makeRoutes from "../routes";
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import { ApolloProvider } from "react-apollo";
-import ApolloClientSingleton from "../network/apollo-client-singleton";
-import { login, logout } from "./auth-service";
+import ApolloProvider  from "react-apollo";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers';
+import ApolloClientSingleton from "../network/apollo-client-singleton";
+import { login, logout } from "./auth-service";
+import errorCatcher from "./error-catcher";
+import makeRoutes from "../routes";
 import { store, persistor } from '../redux/store';
 import { SettingsProvider } from '../contexts/SettingsContext';
 import { CollapseDrawerProvider } from '../contexts/CollapseDrawerContext';
@@ -63,17 +63,17 @@ StyleSheet.rehydrate(window.RENDERED_CLASS_NAMES);
 
 ReactDOM.render(
   <AuthProvider>
-  <HelmetProvider>
-    <ReduxProvider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <SettingsProvider>
-            <CollapseDrawerProvider>
-              <BrowserRouter>
-                <ApolloProvider client={ApolloClientSingleton}>
-                  <Router history={browserHistory} routes={makeRoutes()} />
-                    </ApolloProvider>
-                  </BrowserRouter>
+    <HelmetProvider>
+      <ReduxProvider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <SettingsProvider>
+              <CollapseDrawerProvider>
+                <BrowserRouter>
+                  <ApolloProvider client={ApolloClientSingleton}>
+                    <Router history={browserHistory} routes={makeRoutes()} />
+                  </ApolloProvider>
+                </BrowserRouter>
               </CollapseDrawerProvider>
             </SettingsProvider>
           </LocalizationProvider>

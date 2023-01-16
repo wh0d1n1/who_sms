@@ -15,7 +15,7 @@ import { ChartStyle } from './components/chart';
 import ScrollToTop from './components/ScrollToTop';
 import { ProgressBarStyle } from './components/ProgressBar';
 import NotistackProvider from './components/NotistackProvider';
-import MotionLazyContainer from './components/animate/MotionLazyContainer';
+import MotionLazyContainer from './animate/MotionLazyContainer';
 /**
  * We will let users customize the colors but not other
  * parts of the theme object. Here we will take the string,

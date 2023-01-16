@@ -1,17 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Router, browserHistory } from "react-router";
-import { StyleSheet } from "aphrodite";
-import errorCatcher from "./error-catcher";
-import makeRoutes from "../routes";
-import { ApolloProvider } from "react-apollo";
-import ApolloClientSingleton from "../network/apollo-client-singleton";
-import { login, logout } from "./auth-service";
 // i18n
-import './locales/i18n';
+import '../locales/i18n';
 
 // highlight
-import './utils/highlight';
+import '../utils/highlight';
 
 // scroll bar
 import 'simplebar/src/simplebar.css';
@@ -33,6 +24,30 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 import 'react-lazy-load-image-component/src/effects/black-and-white.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Router, browserHistory } from "react-router";
+import { StyleSheet } from "aphrodite";
+import errorCatcher from "./error-catcher";
+import makeRoutes from "../routes";
+import { HelmetProvider } from 'react-helmet-async';
+import { Provider as ReduxProvider } from 'react-redux';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import { ApolloProvider } from "react-apollo";
+import ApolloClientSingleton from "../network/apollo-client-singleton";
+import { login, logout } from "./auth-service";
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { store, persistor } from '../redux/store';
+import { SettingsProvider } from '../contexts/SettingsContext';
+import { CollapseDrawerProvider } from '../contexts/CollapseDrawerContext';
+import { AuthProvider } from '../contexts/JWTContext';
+// import { AuthProvider } from './contexts/Auth0Context';
+// import { AuthProvider } from './contexts/FirebaseContext';
+// import { AuthProvider } from './contexts/AwsCognitoContext';
+
+
+
 window.onerror = (msg, file, line, col, error) => {
   errorCatcher(error);
 };
@@ -47,8 +62,24 @@ window.AuthService = {
 StyleSheet.rehydrate(window.RENDERED_CLASS_NAMES);
 
 ReactDOM.render(
-  <ApolloProvider client={ApolloClientSingleton}>
-    <Router history={browserHistory} routes={makeRoutes()} />
-  </ApolloProvider>,
+  <AuthProvider>
+  <HelmetProvider>
+    <ReduxProvider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <SettingsProvider>
+            <CollapseDrawerProvider>
+              <BrowserRouter>
+                <ApolloProvider client={ApolloClientSingleton}>
+                  <Router history={browserHistory} routes={makeRoutes()} />
+                    </ApolloProvider>
+                  </BrowserRouter>
+              </CollapseDrawerProvider>
+            </SettingsProvider>
+          </LocalizationProvider>
+        </PersistGate>
+      </ReduxProvider>
+    </HelmetProvider>
+  </AuthProvider>,
   document.getElementById("mount")
 );

@@ -7,7 +7,16 @@ import MotionLazyContainer from './animate/MotionLazyContainer';
 
 import { defaultTheme } from "../styles/mui-theme";
 import ThemeContext from "../containers/context/ThemeContext";
-
+import Router from './routes';
+// theme
+import ThemeProvider from './theme';
+// components
+import ThemeSettings from './components/settings';
+import { ChartStyle } from './components/chart';
+import ScrollToTop from './components/ScrollToTop';
+import { ProgressBarStyle } from './components/ProgressBar';
+import NotistackProvider from './components/NotistackProvider';
+import MotionLazyContainer from './components/animate/MotionLazyContainer';
 /**
  * We will let users customize the colors but not other
  * parts of the theme object. Here we will take the string,

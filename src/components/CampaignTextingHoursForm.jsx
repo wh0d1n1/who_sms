@@ -8,7 +8,7 @@ import * as yup from "yup";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 import moment from "moment";
-// import momentTz from "moment-timezone";
+import momentTz from "moment-timezone";
 
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
@@ -41,15 +41,15 @@ let timezones = [
   "America/Puerto_Rico",
   "America/Virgin"
 ];
-// if (typeof window !== "undefined") {
-//   if (window.TZ && timezones.indexOf(window.TZ) === -1) {
-//     const allTZs = momentTz.tz.names();
-//     const tzIndex = allTZs.indexOf(window.TZ);
-//     if (tzIndex !== -1) {
-//       timezones = allTZs.slice(Math.max(0, tzIndex - 5), tzIndex + 5);
-//     }
-//   }
-// }
+if (typeof window !== "undefined") {
+  if (window.TZ && timezones.indexOf(window.TZ) === -1) {
+    const allTZs = momentTz.tz.names();
+    const tzIndex = allTZs.indexOf(window.TZ);
+    if (tzIndex !== -1) {
+      timezones = allTZs.slice(Math.max(0, tzIndex - 5), tzIndex + 5);
+    }
+  }
+}
 const timezoneChoices = timezones.map(timezone => ({
   label: timezone,
   value: timezone

@@ -23,7 +23,6 @@ const plugins = [
     }
   )
 ];
-
 const jsxLoaders = [{ loader: "babel-loader" }];
 const assetsDir = process.env.ASSETS_DIR || "./build/client/assets";
 const assetMapFile = process.env.ASSETS_MAP_FILE || "assets.json";
@@ -57,10 +56,6 @@ const config = {
   },
   module: {
     rules: [
-      {
-        test: /\.m?js/,
-        type: "javascript/auto",
-      },
       {
         test: /\.css$/,
         use: [{ loader: "style-loader" }, { loader: "css-loader" }]

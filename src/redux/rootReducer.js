@@ -17,19 +17,19 @@ const rootPersistConfig = {
   whitelist: [],
 };
 
-const productPersistConfig = {
-  key: 'product',
-  storage,
-  keyPrefix: 'redux-',
-  whitelist: ['sortBy', 'checkout'],
-};
+// const productPersistConfig = {
+//  key: 'product',
+//  storage,
+//  keyPrefix: 'redux-',
+//  whitelist: ['sortBy', 'checkout'],
+// };
 
 const rootReducer = combineReducers({
-  mail: mailReducer,
+//  mail: mailReducer,
   chat: chatReducer,
-  calendar: calendarReducer,
-  kanban: kanbanReducer,
-  product: persistReducer(productPersistConfig, productReducer),
+//  calendar: calendarReducer,
+//  kanban: kanbanReducer,
+ // product: persistReducer(productPersistConfig, productReducer),
 });
 
 export { rootPersistConfig, rootReducer };

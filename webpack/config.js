@@ -57,27 +57,8 @@ const config = {
   module: {
     rules: [
       {
-          test: /\.m?js/,
-          type: "javascript/auto",
-      },
-      {
-          test: /\.m?js/,
-          resolve: {
-            fullySpecified: false
-          }
-      },
-      {
         test: /\.css$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" }
-        ]
-      },
-      {
-        test: /\.less$/i,
-        use: [
-          "less-loader",
-        ],
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }]
       },
       {
         test: /\.jsx?$/,
@@ -89,22 +70,9 @@ const config = {
   resolve: {
     fallback: { stream: require.resolve("stream-browserify"), zlib: require.resolve("browserify-zlib") },
     mainFields: ["browser", "main", "module"],
-    mainFiles: ['index', 'Index'],
-    extensions: [".js", ".jsx", ".json"],
-    alias: {
-            '@': path.resolve(__dirname, 'src/'),
-        }
+    extensions: [".js", ".jsx", ".json"]
   },
   plugins,
-  devServer: {
-        historyApiFallback: true
-    },
-  externals: {
-    // global app config object
-      config: JSON.stringify({
-          apiUrl: 'http://localhost:4000'
-    })
-  },
   output: {
     filename: outputFile,
     path: path.resolve(DEBUG ? __dirname : assetsDir)

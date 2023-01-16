@@ -73,38 +73,6 @@
     "organizing",
     "field"
   ],
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
-  "babel": {
-      "presets": ["@babel/preset-react", "@babel/preset-env", ["@babel/preset-typescript", { "allExtensions": true, "isTSX": true }]],
-      "only": ["./**/*.js", "./**/*.jsx"],
-      "plugins": [
-        "@babel/plugin-proposal-export-default-from",
-        ["@babel/plugin-transform-runtime", {
-          "regenerator": true
-        }]
-      ],
-      "env": {
-        "dev": {
-          "plugins":["react-hot-loader/babel"]
-        }
-      }
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "author": "Travis Padilla",
   "license": "GPL-3.0-only",
   "bugs": {
@@ -286,7 +254,6 @@
     "@svgr/webpack": "^6.2.1",
     "@typescript-eslint/eslint-plugin": "^5.30.3",
     "@typescript-eslint/parser": "^5.30.3",
-    "babel-eslint": "^10.1.0",
     "eslint-config-react-app": "^7.0.0",
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-prettier": "^4.2.1",

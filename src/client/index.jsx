@@ -31,6 +31,7 @@ import { StyleSheet } from "aphrodite";
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import ApolloProvider  from "react-apollo";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -41,7 +42,7 @@ import makeRoutes from "../routes";
 import { store, persistor } from '../redux/store';
 import { SettingsProvider } from '../contexts/SettingsContext';
 import { CollapseDrawerProvider } from '../contexts/CollapseDrawerContext';
-import { AuthProvider } from '../contexts/JWTContext';
+// import { AuthProvider } from '../contexts/JWTContext';   <AuthProvider>  </AuthProvider>m                                                               
 // import { AuthProvider } from './contexts/Auth0Context';
 // import { AuthProvider } from './contexts/FirebaseContext';
 // import { AuthProvider } from './contexts/AwsCognitoContext';
@@ -62,7 +63,7 @@ window.AuthService = {
 StyleSheet.rehydrate(window.RENDERED_CLASS_NAMES);
 
 ReactDOM.render(
-  <AuthProvider>
+  <ApolloProvider client={ApolloClientSingleton}>
     <HelmetProvider>
       <ReduxProvider store={store}>
         <PersistGate loading={null} persistor={persistor}>
@@ -70,9 +71,7 @@ ReactDOM.render(
             <SettingsProvider>
               <CollapseDrawerProvider>
                 <BrowserRouter>
-                  <ApolloProvider client={ApolloClientSingleton}>
-                    <Router history={browserHistory} routes={makeRoutes()} />
-                  </ApolloProvider>
+                  <Router history={browserHistory} routes={makeRoutes()} />
                 </BrowserRouter>
               </CollapseDrawerProvider>
             </SettingsProvider>
@@ -80,6 +79,6 @@ ReactDOM.render(
         </PersistGate>
       </ReduxProvider>
     </HelmetProvider>
-  </AuthProvider>,
+  </ApolloProvider>,
   document.getElementById("mount")
 );

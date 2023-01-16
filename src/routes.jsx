@@ -61,7 +61,6 @@ const checkTexterDowntime = requireAuth => (nextState, replace) => {
 export default function makeRoutes(requireAuth = () => {}) {
   return (
     <Route path="/" component={App} onEnter={checkDowntime}>
-      <Route path="/test"  component={Chat} />
       <IndexRoute component={Home} />
       <Route path="downtime" component={Downtime} />
       <Route path="admin" component={AdminDashboard} onEnter={requireAuth}>

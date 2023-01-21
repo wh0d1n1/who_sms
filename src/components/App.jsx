@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import createTheme from "@material-ui/core/styles";
+import {createTheme} from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import { defaultTheme } from "../styles/mui-theme";

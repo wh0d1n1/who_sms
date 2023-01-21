@@ -17,11 +17,6 @@ const plugins = [
     "process.env.NODE_ENV": `"${process.env.NODE_ENV}"`,
     "process.env.PHONE_NUMBER_COUNTRY": `"${process.env.PHONE_NUMBER_COUNTRY ||
       "US"}"`
-  }),
-    new MomentTimezoneDataPlugin({
-      matchZones: 'America/New_York',
-      startYear: currentYear - 1,
-      endYear: currentYear
   })
 ]
 

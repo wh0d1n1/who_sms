@@ -73,10 +73,7 @@ export default function makeRoutes(requireAuth = () => {}) {
               <IndexRoute component={AdminCampaignStats} />
               <Route path="edit" component={AdminCampaignEdit} />
               <Route path="send-replies" component={AdminReplySender} />
-              <Route
-                path="messaging-service"
-                component={AdminCampaignMessagingService}
-              />
+              <Route path="messaging-service" component={AdminCampaignMessagingService} />
             </Route>
           </Route>
           <Route path="people" component={AdminPersonList} />
@@ -93,12 +90,12 @@ export default function makeRoutes(requireAuth = () => {}) {
             return (
               <TexterDashboard
                 main={<DashboardLoader path="/app" />}
-                topNav={
+                topNav={(
                   <TopNav
                     title="Spoke Texting"
                     orgId={props.params.organizationId}
                   />
-                }
+                )}
               />
             );
           }}
@@ -111,12 +108,12 @@ export default function makeRoutes(requireAuth = () => {}) {
               return (
                 <TexterDashboard
                   main={<TexterFaqs faqs={FAQs} />}
-                  topNav={
+                  topNav={(
                     <TopNav
                       title="Account"
                       orgId={props.params.organizationId}
                     />
-                  }
+                  )}
                 />
               );
             }}
@@ -126,18 +123,18 @@ export default function makeRoutes(requireAuth = () => {}) {
             component={props => {
               return (
                 <TexterDashboard
-                  main={
+                  main={(
                     <UserEdit
                       userId={props.params.userId}
                       organizationId={props.params.organizationId}
                     />
-                  }
-                  topNav={
+                  )}
+                  topNav={(
                     <TopNav
                       title="Account"
                       orgId={props.params.organizationId}
                     />
-                  }
+                  )}
                 />
               );
             }}
@@ -148,12 +145,12 @@ export default function makeRoutes(requireAuth = () => {}) {
                 return (
                   <TexterDashboard
                     main={<TexterTodoList {...props} />}
-                    topNav={
+                    topNav={(
                       <TopNav
                         title="Spoke Texting"
                         orgId={props.params.organizationId}
                       />
-                    }
+                    )}
                   />
                 );
               }}
@@ -164,12 +161,12 @@ export default function makeRoutes(requireAuth = () => {}) {
                 return (
                   <TexterDashboard
                     main={<TexterTodoList {...props} />}
-                    topNav={
+                    topNav={(
                       <TopNav
                         title="Spoke Texting"
                         orgId={props.params.organizationId}
                       />
-                    }
+                    )}
                   />
                 );
               }}
@@ -248,12 +245,12 @@ export default function makeRoutes(requireAuth = () => {}) {
                 component={props => {
                   return (
                     <TexterDashboard
-                      fullScreen={
+                      fullScreen={(
                         <TexterTodo
                           {...props}
                           messageStatus="needsMessageOrResponse"
                         />
-                      }
+                      )}
                     />
                   );
                 }}

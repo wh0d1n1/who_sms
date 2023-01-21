@@ -1,8 +1,8 @@
 // i18n
-import '../locales/i18n';
+import './locales/i18n';
 
 // highlight
-import '../utils/highlight';
+import './utils/highlight';
 
 // scroll bar
 import 'simplebar/src/simplebar.css';
@@ -24,46 +24,40 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 import 'react-lazy-load-image-component/src/effects/black-and-white.css';
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Router, browserHistory } from "react-router";
-import { StyleSheet } from "aphrodite";
+
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import {ApolloProvider}  from "react-apollo";
+// @mui
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import ApolloClientSingleton from "../network/apollo-client-singleton";
-import { login, logout } from "./auth-service";
-import errorCatcher from "./error-catcher";
-import makeRoutes from "../routes";
-import { store, persistor } from '../redux/store';
-import { SettingsProvider } from '../contexts/SettingsContext';
-import { CollapseDrawerProvider } from '../contexts/CollapseDrawerContext';
-// import { AuthProvider } from '../contexts/JWTContext';   <AuthProvider>  </AuthProvider>m                                                               
+// redux
+import { store, persistor } from './redux/store';
+// contexts
+import { SettingsProvider } from './contexts/SettingsContext';
+import { CollapseDrawerProvider } from './contexts/CollapseDrawerContext';
+
+// Check our docs
+// https://docs-minimals.vercel.app/authentication/ts-version
+
+import { AuthProvider } from './contexts/JWTContext';
 // import { AuthProvider } from './contexts/Auth0Context';
 // import { AuthProvider } from './contexts/FirebaseContext';
 // import { AuthProvider } from './contexts/AwsCognitoContext';
 
+//
+import App from './App';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import reportWebVitals from './reportWebVitals';
 
+// ----------------------------------------------------------------------
 
-window.onerror = (msg, file, line, col, error) => {
-  errorCatcher(error);
-};
-window.addEventListener("unhandledrejection", event => {
-  errorCatcher(event.reason);
-});
-window.AuthService = {
-  login,
-  logout
-};
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-StyleSheet.rehydrate(window.RENDERED_CLASS_NAMES);
-
-ReactDOM.render(
-  <ApolloProvider client={ApolloClientSingleton}>
+root.render(
+  <AuthProvider>
     <HelmetProvider>
       <ReduxProvider store={store}>
         <PersistGate loading={null} persistor={persistor}>
@@ -71,7 +65,7 @@ ReactDOM.render(
             <SettingsProvider>
               <CollapseDrawerProvider>
                 <BrowserRouter>
-                  <Router history={browserHistory} routes={makeRoutes()} />
+                  <App />
                 </BrowserRouter>
               </CollapseDrawerProvider>
             </SettingsProvider>
@@ -79,6 +73,15 @@ ReactDOM.render(
         </PersistGate>
       </ReduxProvider>
     </HelmetProvider>
-  </ApolloProvider>,
-  document.getElementById("mount")
+  </AuthProvider>
 );
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://cra.link/PWA
+serviceWorkerRegistration.unregister();
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

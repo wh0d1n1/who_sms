@@ -26,7 +26,7 @@ const formatTheme = newTheme => {
   };
 };
 
-const App = ({ children }) => {
+function App({ children }) {
   const [theme, setTheme] = useState(defaultTheme);
   let muiTheme = createTheme(defaultTheme);
   try {
@@ -51,17 +51,17 @@ const App = ({ children }) => {
 
   return (
     <MotionLazyContainer>
-    <ThemeContext.Provider value={{ muiTheme, setTheme: handleSetTheme }}>
-      <ThemeSettings>
-      <ThemeProvider theme={muiTheme}>
-        <CssBaseline />
-        <div styles={{ height: "100%" }}>{children}</div>
-      </ThemeProvider>
-      </ThemeSettings>
-    </ThemeContext.Provider>
+      <ThemeContext.Provider value={{ muiTheme, setTheme: handleSetTheme }}>
+        <ThemeSettings>
+          <ThemeProvider theme={muiTheme}>
+            <CssBaseline />
+            <div styles={{ height: "100%" }}>{children}</div>
+          </ThemeProvider>
+        </ThemeSettings>
+      </ThemeContext.Provider>
     </MotionLazyContainer>
   );
-};
+}
 
 App.propTypes = {
   children: PropTypes.object

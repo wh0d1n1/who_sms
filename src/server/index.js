@@ -1,16 +1,14 @@
 import "babel-polyfill";
 import bodyParser from "body-parser";
 import express from "express";
-import appRenderer from "./middleware/app-renderer";
 import { graphqlExpress, graphiqlExpress } from "apollo-server-express";
 import { makeExecutableSchema } from "graphql-tools";
-// ORDERING: ./models import must be imported above ./api to help circular imports
-import { replaceEasyGsmWins } from "../lib/gsm";
-import { createLoaders, createTablesIfNecessary, r } from "./models";
-import { resolvers } from "./api/schema";
-import { schema } from "../api/schema";
 import passport from "passport";
 import cookieSession from "cookie-session";
+// ORDERING: ./models import must be imported above ./api to help circular imports
+import { existsSync } from "fs";
+import herokuSslRedirect from "heroku-ssl-redirect";
+import { GraphQLError } from "graphql/error";
 import passportSetup from "./auth-passport";
 import { log } from "../lib";
 import telemetry from "./telemetry";
@@ -18,10 +16,11 @@ import { addServerEndpoints as messagingServicesAddServerEndpoints } from "../ex
 import { getConfig } from "./api/lib/config";
 import { seedZipCodes } from "./seeds/seed-zip-codes";
 import { setupUserNotificationObservers } from "./notifications";
-import { existsSync } from "fs";
 import { rawAllMethods } from "../extensions/contact-loaders";
-import herokuSslRedirect from "heroku-ssl-redirect";
-import { GraphQLError } from "graphql/error";
+import appRenderer from "./middleware/app-renderer";
+import { createLoaders, createTablesIfNecessary, r } from "./models";
+import { resolvers } from "./api/schema";
+import { schema } from "../api/schema";
 
 process.on("uncaughtException", ex => {
   log.error(ex);

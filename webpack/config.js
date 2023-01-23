@@ -2,8 +2,6 @@ const path = require("path");
 const webpack = require("webpack");
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
-const MomentTimezoneDataPlugin = require('moment-timezone-data-webpack-plugin');
-const currentYear = new Date().getFullYear();
 
 const DEBUG =
   process.env.NODE_ENV === "development" || !!process.env.WEBPACK_HOT_RELOAD;

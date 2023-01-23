@@ -2,7 +2,7 @@
 
 There are several ways to deploy. This is the 'most minimal' approach:
 
-1. Run `OUTPUT_DIR=./build yarn run prod-build-server`
+1. Run `OUTPUT_DIR=./build  `
    This will generate something you can deploy to production in ./build and run nodejs server/server/index.js
 2. Run `yarn run prod-build-client`
 3. Make a copy of `deploy/spoke-pm2.config.js.template`, e.g. `spoke-pm2.config.js`, add missing environment variables, and run it with [pm2](https://www.npmjs.com/package/pm2), e.g. `pm2 start spoke-pm2.config.js --env production`

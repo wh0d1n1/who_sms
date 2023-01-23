@@ -8,7 +8,7 @@ database, using the SESSION_SECRET environment variable as the encryption key.
 
 const crypto = require("crypto");
 
-const secret = process.env.SESSION_SECRET || global.SESSION_SECRET;
+const secret = "1234" || global.SESSION_SECRET;
 const algorithm = "aes-256-cbc";
 
 if (!secret) {

@@ -25,5 +25,5 @@ CONFIG_FILE.json
 scratch/
 cypress/screenshots
 cypress/videos
-.env.example
+.env*
 .env

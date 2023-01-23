@@ -48,6 +48,10 @@ const checkDowntime = (nextState, replace) => {
   }
 };
 
+
+
+
+
 const checkTexterDowntime = requireAuth => (nextState, replace) => {
   if (global.DOWNTIME_TEXTER && nextState.location.pathname !== "/downtime") {
     replace({

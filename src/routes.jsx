@@ -1,3 +1,4 @@
+import React from "react";
 import { IndexRoute, IndexRedirect, Route } from "react-router";
 import App from "./components/App";
 import AdminDashboard from "./components/AdminDashboard";
@@ -16,10 +17,9 @@ import DashboardLoader from "./containers/DashboardLoader";
 import TexterTodoList from "./containers/TexterTodoList";
 import TexterTodo from "./containers/TexterTodo";
 import Login from "./components/Login";
-import Chat from "./components/Chat";
+// import Chat from "./components/Chat";
 import Terms from "./containers/Terms";
 import Downtime from "./components/Downtime";
-import React from "react";
 import CreateOrganization from "./containers/CreateOrganization";
 import CreateAdditionalOrganization from "./containers/CreateAdditionalOrganization";
 import AdminOrganizationsDashboard from "./containers/AdminOrganizationsDashboard";
